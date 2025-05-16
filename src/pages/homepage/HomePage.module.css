@@ -1,0 +1,340 @@
+
+.hero {
+    padding: 80px 0;
+    background: linear-gradient(180deg, var(--background) 0%, var(--card-bg) 100%);
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.heroContent {
+    max-width: 800px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+}
+
+.heroTitle {
+    font-size: 48px;
+    font-weight: 800;
+    line-height: 1.2;
+    margin-bottom: 16px;
+    background: linear-gradient(90deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.heroSubtitle {
+    font-size: 20px;
+    color: var(--text-secondary);
+    margin-bottom: 32px;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.heroActions {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    margin-bottom: 48px;
+}
+
+.heroCta {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    margin-bottom: 32px;
+}
+
+.trialBadge {
+    display: inline-block;
+    background-color: rgba(255, 87, 0, 0.15);
+    color: var(--primary-color);
+    font-weight: 600;
+    font-size: 14px;
+    padding: 4px 12px;
+    border-radius: 16px;
+    margin-bottom: 16px;
+}
+
+.ctaButton {
+    padding: 12px 24px;
+    font-size: 16px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.featureSection {
+    margin: 64px 0;
+}
+
+.featuresGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-gap: 32px;
+    margin-top: 32px;
+}
+
+.featureCard {
+    padding: 24px;
+    text-align: left;
+    transition: transform 0.2s ease;
+}
+
+.featureCard:hover {
+    transform: translateY(-4px);
+}
+
+.featureIcon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    background-color: var(--primary-color);
+    color: var(--button-primary-text);
+    border-radius: 12px;
+    margin-bottom: 16px;
+}
+
+.featureTitle {
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 12px;
+}
+
+.featureDescription {
+    color: var(--text-secondary);
+    line-height: 1.6;
+}
+
+.demoSection {
+    background-color: var(--card-bg);
+    border-radius: 12px;
+    overflow: hidden;
+    margin: 64px 0;
+    box-shadow: var(--shadow);
+    border: 1px solid var(--border-color);
+}
+
+.demoTabs {
+    display: flex;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.demoTab {
+    padding: 16px 24px;
+    font-weight: 600;
+    color: var(--text-secondary);
+    cursor: pointer;
+    position: relative;
+}
+
+.demoTabActive {
+    color: var(--primary-color);
+}
+
+.demoTabActive::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background-color: var(--primary-color);
+}
+
+.demoContent {
+    padding: 24px;
+}
+
+.demoImage {
+    width: 100%;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+}
+
+.testimonialSection {
+    background-color: var(--card-bg);
+    padding: 64px 0;
+    margin: 80px 0;
+}
+
+.testimonialGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-gap: 32px;
+}
+
+.testimonialCard {
+    padding: 24px;
+    border-radius: 8px;
+    box-shadow: var(--shadow);
+    border: 1px solid var(--border-color);
+    background-color: var(--background);
+}
+
+.testimonialContent {
+    position: relative;
+    padding-left: 32px;
+    margin-bottom: 16px;
+}
+
+.testimonialContent::before {
+    content: '"';
+    position: absolute;
+    left: 0;
+    top: -12px;
+    font-size: 48px;
+    color: var(--primary-color);
+    font-family: serif;
+}
+
+.testimonialAuthor {
+    font-weight: 600;
+}
+
+.testimonialRole {
+    color: var(--text-secondary);
+    font-size: 14px;
+}
+
+.callToActionSection {
+    padding: 64px 0;
+    text-align: center;
+    background: linear-gradient(180deg, var(--background) 0%, var(--card-bg) 100%);
+    margin-bottom: 80px;
+}
+
+.footer {
+    background-color: var(--card-bg);
+    border-top: 1px solid var(--border-color);
+    padding: 40px 0 20px;
+}
+
+.footerGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-gap: 32px;
+    margin-bottom: 40px;
+}
+
+.footerLogo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 16px;
+}
+
+.footerLogoImg {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background-color: var(--primary-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: bold;
+}
+
+.footerDescription {
+    color: var(--text-secondary);
+    margin-bottom: 16px;
+}
+
+.footerSocial {
+    display: flex;
+    gap: 12px;
+}
+
+.footerTitle {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 16px;
+}
+
+.footerLinks {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.footerLink {
+    color: var(--text-secondary);
+    font-size: 14px;
+}
+
+.footerLink:hover {
+    color: var(--primary-color);
+}
+
+.footerBottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 20px;
+    border-top: 1px solid var(--border-color);
+    color: var(--text-secondary);
+    font-size: 14px;
+}
+
+.footerBottomLinks {
+    display: flex;
+    gap: 16px;
+}
+
+@media (max-width: 768px) {
+    .footerBottom {
+        flex-direction: column;
+        gap: 16px;
+        text-align: center;
+    }
+}
+
+.callToActionContent {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.callToActionTitle {
+    font-size: 36px;
+    font-weight: 700;
+    margin-bottom: 16px;
+}
+
+.callToActionDescription {
+    color: var(--text-secondary);
+    margin-bottom: 32px;
+}
+
+@media (max-width: 768px) {
+    .hero {
+        padding: 60px 0;
+    }
+
+    .heroTitle {
+        font-size: 36px;
+    }
+
+    .heroSubtitle {
+        font-size: 18px;
+    }
+
+    .heroCta {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .featuresGrid {
+        grid-template-columns: 1fr;
+    }
+
+    .testimonialGrid {
+        grid-template-columns: 1fr;
+    }
+}

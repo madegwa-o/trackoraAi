@@ -1,0 +1,179 @@
+:root {
+  /* Light theme variables */
+  --background-light: #f8f9fa;
+  --text-primary-light: #24292f;
+  --text-secondary-light: #57606a;
+  --primary-color-light: #ff5700; /* Reddit-like orange */
+  --primary-hover-light: #e24e00;
+  --secondary-color-light: #0969da;
+  --border-color-light: #d0d7de;
+  --card-bg-light: #ffffff;
+  --header-bg-light: #ffffff;
+  --button-primary-bg-light: #ff5700;
+  --button-primary-text-light: #ffffff;
+  --button-secondary-bg-light: #f6f8fa;
+  --button-secondary-text-light: #24292f;
+  --input-bg-light: #ffffff;
+  --input-border-light: #d0d7de;
+  --shadow-light: 0 1px 3px rgba(0, 0, 0, 0.12);
+
+  /* Dark theme variables */
+  --background-dark: #0d1117;
+  --text-primary-dark: #e6edf3;
+  --text-secondary-dark: #8b949e;
+  --primary-color-dark: #ff5700; /* Reddit-like orange */
+  --primary-hover-dark: #ff7a33;
+  --secondary-color-dark: #58a6ff;
+  --border-color-dark: #30363d;
+  --card-bg-dark: #161b22;
+  --header-bg-dark: #161b22;
+  --button-primary-bg-dark: #ff5700;
+  --button-primary-text-dark: #ffffff;
+  --button-secondary-bg-dark: #21262d;
+  --button-secondary-text-dark: #c9d1d9;
+  --input-bg-dark: #0d1117;
+  --input-border-dark: #30363d;
+  --shadow-dark: 0 1px 3px rgba(0, 0, 0, 0.5);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  transition: color 0.2s ease, background-color 0.2s ease;
+}
+
+body.light {
+  --background: var(--background-light);
+  --text-primary: var(--text-primary-light);
+  --text-secondary: var(--text-secondary-light);
+  --primary-color: var(--primary-color-light);
+  --primary-hover: var(--primary-hover-light);
+  --secondary-color: var(--secondary-color-light);
+  --border-color: var(--border-color-light);
+  --card-bg: var(--card-bg-light);
+  --header-bg: var(--header-bg-light);
+  --button-primary-bg: var(--button-primary-bg-light);
+  --button-primary-text: var(--button-primary-text-light);
+  --button-secondary-bg: var(--button-secondary-bg-light);
+  --button-secondary-text: var(--button-secondary-text-light);
+  --input-bg: var(--input-bg-light);
+  --input-border: var(--input-border-light);
+  --shadow: var(--shadow-light);
+}
+
+body.dark {
+  --background: var(--background-dark);
+  --text-primary: var(--text-primary-dark);
+  --text-secondary: var(--text-secondary-dark);
+  --primary-color: var(--primary-color-dark);
+  --primary-hover: var(--primary-hover-dark);
+  --secondary-color: var(--secondary-color-dark);
+  --border-color: var(--border-color-dark);
+  --card-bg: var(--card-bg-dark);
+  --header-bg: var(--header-bg-dark);
+  --button-primary-bg: var(--button-primary-bg-dark);
+  --button-primary-text: var(--button-primary-text-dark);
+  --button-secondary-bg: var(--button-secondary-bg-dark);
+  --button-secondary-text: var(--button-secondary-text-dark);
+  --input-bg: var(--input-bg-dark);
+  --input-border: var(--input-border-dark);
+  --shadow: var(--shadow-dark);
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  background-color: var(--background);
+  color: var(--text-primary);
+  line-height: 1.6;
+}
+
+a {
+  color: var(--secondary-color);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  margin-bottom: 0.5em;
+  line-height: 1.3;
+}
+
+button {
+  cursor: pointer;
+  font-family: inherit;
+  border: none;
+  border-radius: 6px;
+  padding: 8px 16px;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.btn-primary {
+  background-color: var(--button-primary-bg);
+  color: var(--button-primary-text);
+}
+
+.btn-primary:hover {
+  background-color: var(--primary-hover);
+}
+
+.btn-secondary {
+  background-color: var(--button-secondary-bg);
+  color: var(--button-secondary-text);
+  border: 1px solid var(--border-color);
+}
+
+.btn-secondary:hover {
+  background-color: var(--background);
+}
+
+input, textarea, select {
+  padding: 8px 12px;
+  border-radius: 6px;
+  border: 1px solid var(--input-border);
+  background-color: var(--input-bg);
+  color: var(--text-primary);
+  font-family: inherit;
+  font-size: 16px;
+  transition: border-color 0.2s ease;
+}
+
+input:focus, textarea:focus, select:focus {
+  outline: none;
+  border-color: var(--primary-color);
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.card {
+  background-color: var(--card-bg);
+  border-radius: 8px;
+  padding: 16px;
+  box-shadow: var(--shadow);
+  border: 1px solid var(--border-color);
+}
+
+.section {
+  margin: 48px 0;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
