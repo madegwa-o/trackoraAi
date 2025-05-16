@@ -1,5 +1,5 @@
 import { Headphones, MessageSquare, BookOpen, UserPlus, Globe, Accessibility, Github, Twitter, Linkedin } from 'lucide-react';
-import styles from './homePage.module.css';
+import styles from './HomePage.module.css';
 
 export default function HomePage() {
     return (
