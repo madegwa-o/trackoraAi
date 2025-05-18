@@ -1,0 +1,98 @@
+.header {
+    background-color: var(--header-bg);
+    border-bottom: 1px solid var(--border-color);
+    box-shadow: var(--shadow);
+    padding: 12px 0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.headerContainer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.logoImg {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+}
+
+.logoText {
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.nav {
+    display: flex;
+    gap: 24px;
+}
+
+.navLink {
+    color: var(--text-secondary);
+    font-weight: 500;
+    font-size: 14px;
+    padding: 8px 0;
+    position: relative;
+}
+
+.navLink:hover {
+    color: var(--text-primary);
+    text-decoration: none;
+}
+
+.navLinkActive {
+    color: var(--text-primary);
+}
+
+.navLinkActive::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background-color: var(--primary-color);
+    border-radius: 2px;
+}
+
+.actions {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.iconButton {
+    background: none;
+    border: none;
+    color: var(--text-secondary);
+    padding: 8px;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.iconButton:hover {
+    background-color: var(--button-secondary-bg);
+    color: var(--text-primary);
+}
+
+@media (max-width: 768px) {
+    .nav {
+        display: none;
+    }
+
+    .headerContainer {
+        flex-wrap: wrap;
+    }
+}
