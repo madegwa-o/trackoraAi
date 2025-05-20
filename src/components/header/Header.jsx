@@ -1,6 +1,6 @@
 
 import { Sun, Moon, MessageCircle, BellPlus, Menu } from 'lucide-react';
-import styles from './header.module.css';
+import styles from './Header.module.css';
 import { useTheme } from '../../hooks/themeProvider';
 import {Link } from 'react-router-dom';
 
