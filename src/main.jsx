@@ -3,7 +3,7 @@ import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import './index.css'
 import App from './App'
-import {createBrowserRouter, RouterProvider} from "react-router-dom";
+import {createBrowserRouter, Navigate, RouterProvider} from "react-router-dom";
 import BaseLayout from "./baseLayout/BaseLayout.jsx";
 import {Home} from "lucide-react";
 import HomePage from "./pages/homepage/HomePage.jsx";
@@ -28,6 +28,11 @@ const router = createBrowserRouter([
             {
                 path: '/converse',
                 element: <Conversation />,
+            },
+
+            {
+                path: '*',
+                element: <Navigate to='/' replace={true} />
             }
         ]
 
