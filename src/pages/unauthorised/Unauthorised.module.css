@@ -1,0 +1,435 @@
+/* Modern Unauthorized Page Styles with Basketball Challenge Game */
+
+.container {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    position: relative;
+    overflow: hidden;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+}
+
+/* Animated Background */
+.backgroundAnimation {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+}
+
+.floatingShape {
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    animation: float 20s infinite linear;
+}
+
+.floatingShape:nth-child(1) {
+    width: 120px;
+    height: 120px;
+    top: 20%;
+    left: 10%;
+    animation-delay: 0s;
+}
+
+.floatingShape:nth-child(2) {
+    width: 80px;
+    height: 80px;
+    top: 60%;
+    right: 15%;
+    animation-delay: -7s;
+}
+
+.floatingShape:nth-child(3) {
+    width: 160px;
+    height: 160px;
+    bottom: 10%;
+    left: 50%;
+    animation-delay: -14s;
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0px) rotate(0deg);
+        opacity: 0.7;
+    }
+    25% {
+        transform: translateY(-30px) rotate(90deg);
+        opacity: 0.9;
+    }
+    50% {
+        transform: translateY(-60px) rotate(180deg);
+        opacity: 0.5;
+    }
+    75% {
+        transform: translateY(-90px) rotate(270deg);
+        opacity: 0.8;
+    }
+}
+
+/* Main Content */
+.content {
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 24px;
+    padding: 3rem;
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+    text-align: center;
+    max-width: 900px;
+    width: 100%;
+    position: relative;
+    z-index: 1;
+    animation: slideInUp 0.8s ease-out;
+}
+
+@keyframes slideInUp {
+    from {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Error Section */
+.errorSection {
+    margin-bottom: 3rem;
+}
+
+.lockIcon {
+    font-size: 4rem;
+    margin-bottom: 1rem;
+    animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0);
+    }
+    40% {
+        transform: translateY(-10px);
+    }
+    60% {
+        transform: translateY(-5px);
+    }
+}
+
+.title {
+    font-size: 3rem;
+    font-weight: 700;
+    color: white;
+    margin: 0 0 1rem 0;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    animation: glow 3s ease-in-out infinite alternate;
+}
+
+@keyframes glow {
+    from {
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3), 0 0 20px rgba(255, 255, 255, 0.5);
+    }
+    to {
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3), 0 0 30px rgba(255, 255, 255, 0.8);
+    }
+}
+
+.subtitle {
+    font-size: 1.2rem;
+    color: rgba(255, 255, 255, 0.9);
+    margin: 0;
+}
+
+/* Game Section */
+.gameSection {
+    margin-bottom: 3rem;
+    padding: 2rem;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.gameTitle {
+    font-size: 1.8rem;
+    color: white;
+    margin: 0 0 1rem 0;
+    font-weight: 600;
+    text-shadow: 0 0 10px rgba(255, 140, 0, 0.5);
+}
+
+.gameInstructions {
+    font-size: 1rem;
+    color: rgba(255, 255, 255, 0.9);
+    margin: 0 0 1.5rem 0;
+    line-height: 1.4;
+}
+
+.startButton {
+    background: linear-gradient(45deg, #FF8C00, #FF4500);
+    color: white;
+    border: none;
+    padding: 1rem 2rem;
+    font-size: 1.1rem;
+    font-weight: 600;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    animation: basketballPulse 2s infinite;
+}
+
+@keyframes basketballPulse {
+    0% {
+        transform: scale(1);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2), 0 0 0 0 rgba(255, 140, 0, 0.5);
+    }
+    50% {
+        transform: scale(1.05);
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3), 0 0 0 10px rgba(255, 140, 0, 0.2);
+    }
+    100% {
+        transform: scale(1);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2), 0 0 0 0 rgba(255, 140, 0, 0);
+    }
+}
+
+.startButton:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+}
+
+/* Game Container */
+.gameContainer {
+    width: 100%;
+}
+
+.gameStats {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+    padding: 0 1rem;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.stat {
+    color: white;
+    font-weight: 600;
+    font-size: 1.1rem;
+    background: rgba(255, 255, 255, 0.15);
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    min-width: 80px;
+    text-align: center;
+}
+
+.gameCanvasContainer {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+
+.gameCanvas {
+    border: 3px solid rgba(255, 255, 255, 0.3);
+    border-radius: 12px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+    background: #87CEEB;
+    cursor: crosshair;
+    transition: all 0.3s ease;
+    max-width: 100%;
+    height: auto;
+}
+
+.gameCanvas:hover {
+    border-color: rgba(255, 140, 0, 0.6);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3), 0 0 20px rgba(255, 140, 0, 0.3);
+}
+
+.gameInstructions {
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 0.9rem;
+    text-align: center;
+    padding: 0.5rem 1rem;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(10px);
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+/* Game Over Section */
+.gameOver {
+    padding: 2rem;
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    animation: slideInUp 0.6s ease-out;
+}
+
+.gameOver h3 {
+    font-size: 1.8rem;
+    color: white;
+    margin: 0 0 1rem 0;
+    text-shadow: 0 0 15px rgba(255, 215, 0, 0.6);
+}
+
+.gameOver p {
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 1.1rem;
+    margin: 0.5rem 0;
+}
+
+.playAgainButton {
+    background: linear-gradient(45deg, #32CD32, #228B22);
+    color: white;
+    border: none;
+    padding: 1rem 2rem;
+    font-size: 1.1rem;
+    font-weight: 600;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    margin-top: 1rem;
+}
+
+.playAgainButton:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+    background: linear-gradient(45deg, #3CB371, #2E8B57);
+}
+
+/* Navigation */
+.navigation {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+}
+
+.navLink {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    background: rgba(255, 255, 255, 0.15);
+    color: white;
+    text-decoration: none;
+    border-radius: 50px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+}
+
+.navLink:hover {
+    background: rgba(255, 255, 255, 0.25);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+    border-color: rgba(255, 255, 255, 0.4);
+}
+
+.linkIcon {
+    font-size: 1.2rem;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .container {
+        padding: 1rem;
+    }
+
+    .content {
+        padding: 2rem 1.5rem;
+        border-radius: 16px;
+    }
+
+    .title {
+        font-size: 2.5rem;
+    }
+
+    .gameSection {
+        padding: 1.5rem;
+    }
+
+    .gameCanvas {
+        max-width: 100%;
+        width: 100%;
+        height: auto;
+    }
+
+    .gameStats {
+        justify-content: center;
+        gap: 0.5rem;
+    }
+
+    .stat {
+        font-size: 0.95rem;
+        padding: 0.4rem 0.8rem;
+        min-width: 70px;
+    }
+
+    .navigation {
+        gap: 1rem;
+    }
+
+    .navLink {
+        padding: 0.6rem 1.2rem;
+        font-size: 0.9rem;
+    }
+
+    .floatingShape:nth-child(3) {
+        display: none; /* Hide largest floating shape on mobile */
+    }
+}
+
+@media (max-width: 480px) {
+    .title {
+        font-size: 2rem;
+    }
+
+    .gameTitle {
+        font-size: 1.5rem;
+    }
+
+    .lockIcon {
+        font-size: 3rem;
+    }
+
+    .content {
+        padding: 1.5rem 1rem;
+    }
+
+    .gameSection {
+        padding: 1rem;
+    }
+
+    .startButton,
+    .playAgainButton {
+        padding: 0.8rem 1.5rem;
+        font-size: 1rem;
+    }
+
+    .navigation {
+        flex-direction: column;
+        align-items: center;
+        gap: 0.8rem;
+    }
+
+    .navLink {
+        width: 200px;
+        justify-content: center;
+    }
+}

@@ -1,8 +1,7 @@
-
+import './global-polyfill';
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import './index.css'
-import App from './App'
 import {createBrowserRouter, Navigate, RouterProvider} from "react-router-dom";
 import BaseLayout from "./baseLayout/BaseLayout.jsx";
 import {Home} from "lucide-react";
@@ -10,6 +9,10 @@ import HomePage from "./pages/homepage/HomePage.jsx";
 import ThemeContextProvider from "./hooks/themeProvider.jsx";
 import TextToSpeech from "./pages/textToSpeech/TextToSpeech.jsx";
 import Conversation from "./pages/conversation/Conversation.jsx";
+import {WebSocketProvider} from "./hooks/WebSocketContext.jsx";
+import {DonationPage} from "./components/donation/DonationPage.jsx";
+import Documentation from "./pages/Documentation.jsx";
+import Unauthorised from "./pages/unauthorised/Unauthorised.jsx";
 
 
 const router = createBrowserRouter([
@@ -29,7 +32,18 @@ const router = createBrowserRouter([
                 path: '/converse',
                 element: <Conversation />,
             },
-
+            {
+                path: '/donate',
+                element: <DonationPage />,
+            },
+            {
+                path: '/docs',
+                element: <Documentation />,
+            },
+            {
+                path: '/unauthorized',
+                element: <Unauthorised />,
+            },
             {
                 path: '*',
                 element: <Navigate to='/' replace={true} />
@@ -42,7 +56,9 @@ const router = createBrowserRouter([
 createRoot(document.getElementById('root')).render(
     <StrictMode>
       <ThemeContextProvider>
-          <RouterProvider router={router}/>
+          <WebSocketProvider>
+              <RouterProvider router={router}/>
+          </WebSocketProvider>
       </ThemeContextProvider>
     </StrictMode>,
 )
