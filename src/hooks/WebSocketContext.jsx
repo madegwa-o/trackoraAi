@@ -1,9 +1,9 @@
-// hooks/WebSocketContext.jsx
-import { createContext, useContext, useEffect, useState, useRef, useCallback } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 
 const WebSocketContext = createContext(undefined);
 
-// Custom hook for WebSocket context
+const BASE_URL = import.meta.env.VITE_BACKEND_URL;
+
 export const useWebSocket = () => {
     const context = useContext(WebSocketContext);
     if (!context) {
@@ -12,165 +12,71 @@ export const useWebSocket = () => {
     return context;
 };
 
-// WebSocket configuration
-const WS_CONFIG = {
-    URL: 'ws://localhost:9000/donation/ws',
-    MESSAGE_TIMEOUT: 3000,
-    DESTINATIONS: {
-        CONNECT: '/app/connect',
-        DONATE: '/app/donate',
-    },
-};
-
-// Message types
-const MESSAGE_STATUS = {
-    SUCCESS: 'success',
-    ERROR: 'error',
-};
-
 export const WebSocketProvider = ({ children }) => {
-    const [donorList, setDonorList] = useState([]);
-    const [message, setMessage] = useState('');
-    const [connectionStatus, setConnectionStatus] = useState('Disconnected');
-    const websocketRef = useRef(null);
-    const messageTimeoutRef = useRef(null);
+    const [notification, setNotification] = useState(null);
+    const [socket, setSocket] = useState(null);
 
-    // Clear message after timeout
-    const clearMessageAfterTimeout = useCallback(() => {
-        if (messageTimeoutRef.current) {
-            clearTimeout(messageTimeoutRef.current);
-        }
-        messageTimeoutRef.current = setTimeout(() => {
-            setMessage('');
-        }, WS_CONFIG.MESSAGE_TIMEOUT);
-    }, []);
+    // Establish a WebSocket connection
+    const connectWebSocket = () => {
+            const ws = new WebSocket(`${BASE_URL}/ws`); // Update with your server's WebSocket URL
 
-    // Send WebSocket message
-    const sendWebSocketMessage = useCallback((destination, body = {}) => {
-        if (!websocketRef.current || websocketRef.current.readyState !== WebSocket.OPEN) {
-            console.error("WebSocket is not connected");
-            return false;
-        }
-
-        const message = {
-            destination,
-            body: JSON.stringify(body),
+        ws.onopen = () => {
+            console.log("WebSocket connected");
+            setNotification("CONNECTED");
+            ws.send(JSON.stringify({ status: "ONLINE" })); // Initial message to the server
         };
 
-        websocketRef.current.send(JSON.stringify(message));
-        return true;
-    }, []);
-
-    // Handle incoming WebSocket messages
-    const handleWebSocketMessage = useCallback((event) => {
-        console.log('Message received:', event.data);
-
-        try {
-            const messageData = JSON.parse(event.data);
-
-            if (messageData.status === MESSAGE_STATUS.SUCCESS) {
-                if (messageData.donor) {
-                    setDonorList(prevList => [...prevList, messageData.donor]);
-                }
-                setMessage('Donation successful! Thank you for your contribution.');
-                clearMessageAfterTimeout();
-            } else if (messageData.status === MESSAGE_STATUS.ERROR) {
-                setMessage('Donation failed. Please try again.');
-                clearMessageAfterTimeout();
-            }
-        } catch (error) {
-            console.error('Error parsing WebSocket message:', error);
-            // If not JSON, treat as plain text
-            const message = event.data;
-            if (message.status === MESSAGE_STATUS.SUCCESS) {
-                setMessage('Donation successful! Thank you for your contribution.');
-                clearMessageAfterTimeout();
-            } else if (message.status === MESSAGE_STATUS.ERROR) {
-                setMessage('Donation failed. Please try again.');
-                clearMessageAfterTimeout();
-            }
-        }
-    }, [clearMessageAfterTimeout]);
-
-    // WebSocket event handlers
-    const handleWebSocketOpen = useCallback(() => {
-        setConnectionStatus('Connected');
-        console.log('WebSocket connection established.');
-
-        // Send connect message
-        sendWebSocketMessage(WS_CONFIG.DESTINATIONS.CONNECT);
-    }, [sendWebSocketMessage]);
-
-    const handleWebSocketError = useCallback((error) => {
-        console.error('WebSocket error:', error);
-        setConnectionStatus('Error');
-    }, []);
-
-    const handleWebSocketClose = useCallback(() => {
-        setConnectionStatus('Disconnected');
-        console.log('WebSocket connection closed.');
-    }, []);
-
-    // Initialize WebSocket connection
-    useEffect(() => {
-        websocketRef.current = new WebSocket(WS_CONFIG.URL);
-
-        const ws = websocketRef.current;
-        ws.onopen = handleWebSocketOpen;
-        ws.onmessage = handleWebSocketMessage;
-        ws.onerror = handleWebSocketError;
-        ws.onclose = handleWebSocketClose;
-
-        // Cleanup on unmount
-        return () => {
-            if (messageTimeoutRef.current) {
-                clearTimeout(messageTimeoutRef.current);
-            }
-            if (ws.readyState === WebSocket.OPEN) {
-                ws.close();
+        ws.onmessage = (event) => {
+            try {
+                const message = JSON.parse(event.data); // Attempt to parse JSON
+                console.log("Parsed JSON message: ", message);
+                setNotification(message.message || "NEW MESSAGE");
+            } catch (error) {
+                console.log('Error parsing JSON message', error);
+                console.error("Invalid JSON received: ", event.data);
+                setNotification(event.data); // Use raw data if parsing fails
             }
         };
-    }, [handleWebSocketOpen, handleWebSocketMessage, handleWebSocketError, handleWebSocketClose]);
 
-    // Send donation
-    const sendDonation = useCallback(({ amount, phoneNumber, senderName }) => {
-        if (!websocketRef.current || websocketRef.current.readyState !== WebSocket.OPEN) {
-            console.error("WebSocket is not connected.");
-            setMessage('Connection error. Please refresh and try again.');
-            clearMessageAfterTimeout();
-            return;
-        }
-
-        if (!amount || !phoneNumber) {
-            console.error("Missing required fields: amount or phoneNumber");
-            return;
-        }
-
-        const donationData = {
-            amount: Number(amount),
-            phone_number: phoneNumber,
-            customer_name: senderName === 'Anonymous' ? null : senderName,
-            external_reference: `INV-${new Date().toISOString()}`,
+        ws.onclose = (event) => {
+            console.error("WebSocket closed: ", event);
+            setNotification("DISCONNECTED");
+            // Reconnect after delay
+            setTimeout(() => connectWebSocket(), 5000);
         };
 
-        console.log("Initiating transaction:", donationData);
+        ws.onerror = (error) => {
+            console.error("WebSocket error: ", error);
+            ws.close();
+        };
 
-        const success = sendWebSocketMessage(WS_CONFIG.DESTINATIONS.DONATE, donationData);
-
-        if (success) {
-            setMessage('Transaction pending...');
-        }
-    }, [sendWebSocketMessage, clearMessageAfterTimeout]);
-
-    const contextValue = {
-        message,
-        sendDonation,
-        donorList,
-        connectionStatus,
+        setSocket(ws);
     };
 
+    // Periodic heartbeat
+    const sendHeartbeat = () => {
+        if (socket && socket.readyState === WebSocket.OPEN) {
+            socket.send(JSON.stringify({ status: "PING" }));
+        }
+    };
+
+    useEffect(() => {
+        connectWebSocket();
+
+        const heartbeatInterval = setInterval(() => {
+            sendHeartbeat();
+        }, 3000); // Ping every 30 seconds
+
+        return () => {
+            clearInterval(heartbeatInterval);
+            if (socket) {
+                socket.close();
+            }
+        };
+    }, []);
+
     return (
-        <WebSocketContext.Provider value={contextValue}>
+        <WebSocketContext.Provider value={{ notification }}>
             {children}
         </WebSocketContext.Provider>
     );
