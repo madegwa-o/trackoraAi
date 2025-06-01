@@ -54,11 +54,11 @@ const router = createBrowserRouter([
 ])
 
 createRoot(document.getElementById('root')).render(
-    <StrictMode>
+    // <StrictMode>
       <ThemeContextProvider>
           <WebSocketProvider>
               <RouterProvider router={router}/>
           </WebSocketProvider>
-      </ThemeContextProvider>
-    </StrictMode>,
+      </ThemeContextProvider>,
+    {/*</StrictMode>,*/}
 )
