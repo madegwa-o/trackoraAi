@@ -1,4 +1,160 @@
+/* Base Section Styles */
+.baseSection {
+    padding: 80px 0;
+    position: relative;
+    overflow: hidden;
+}
 
+.baseSection::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at 20% 50%, rgba(255, 87, 0, 0.05) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(9, 105, 218, 0.05) 0%, transparent 50%);
+    pointer-events: none;
+}
+
+/* Base Header Styles */
+.baseHeader {
+    text-align: center;
+    margin-bottom: 64px;
+    position: relative;
+    z-index: 1;
+}
+
+.baseTitle {
+    font-size: 42px;
+    font-weight: 800;
+    line-height: 1.2;
+    margin-bottom: 16px;
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.baseSubtitle {
+    font-size: 18px;
+    color: var(--text-secondary);
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.6;
+}
+
+/* Base Grid Styles */
+.baseGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 32px;
+    position: relative;
+    z-index: 1;
+}
+
+/* Base Card Styles */
+.baseCard {
+    background: var(--card-bg);
+    border-radius: 16px;
+    padding: 32px;
+    text-align: center;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    border: 1px solid var(--border-color);
+    box-shadow: var(--shadow);
+    position: relative;
+    overflow: hidden;
+    text-decoration: none;
+    color: inherit;
+    display: block;
+}
+
+.baseCard::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: -1;
+}
+
+.baseCard:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+    border-color: var(--primary-color);
+    text-decoration: none;
+}
+
+.baseCard:hover::before {
+    opacity: 0.03;
+}
+
+/* Base Icon Styles */
+.baseIcon {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 24px;
+    background: var(--button-secondary-bg);
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--primary-color);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.baseIcon::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    opacity: 0.1;
+    border-radius: inherit;
+}
+
+.baseCard:hover .baseIcon {
+    transform: scale(1.1);
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+}
+
+/* Base Card Content */
+.baseCardTitle {
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 16px;
+    color: var(--text-primary);
+    line-height: 1.3;
+}
+
+.baseCardDescription {
+    font-size: 16px;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin-bottom: 24px;
+}
+
+.baseCardAction {
+    font-weight: 600;
+    color: var(--secondary-color);
+    font-size: 16px;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.baseCard:hover .baseCardAction {
+    color: var(--primary-color);
+    transform: translateX(4px);
+}
+
+/* Hero Section */
 .hero {
     padding: 80px 0;
     background: linear-gradient(180deg, var(--background) 0%, var(--card-bg) 100%);
@@ -34,18 +190,16 @@
     margin-right: auto;
 }
 
-.heroActions {
-    display: flex;
-    gap: 16px;
-    justify-content: center;
-    margin-bottom: 48px;
-}
-
+.heroActions,
 .heroCta {
     display: flex;
     gap: 16px;
     justify-content: center;
     margin-bottom: 32px;
+}
+
+.heroActions {
+    margin-bottom: 48px;
 }
 
 .trialBadge {
@@ -68,50 +222,7 @@
     gap: 8px;
 }
 
-.featureSection {
-    margin: 64px 0;
-}
-
-.featuresGrid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    grid-gap: 32px;
-    margin-top: 32px;
-}
-
-.featureCard {
-    padding: 24px;
-    text-align: left;
-    transition: transform 0.2s ease;
-}
-
-.featureCard:hover {
-    transform: translateY(-4px);
-}
-
-.featureIcon {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 48px;
-    height: 48px;
-    background-color: var(--primary-color);
-    color: var(--button-primary-text);
-    border-radius: 12px;
-    margin-bottom: 16px;
-}
-
-.featureTitle {
-    font-size: 20px;
-    font-weight: 600;
-    margin-bottom: 12px;
-}
-
-.featureDescription {
-    color: var(--text-secondary);
-    line-height: 1.6;
-}
-
+/* Demo Section */
 .demoSection {
     background-color: var(--card-bg);
     border-radius: 12px;
@@ -152,50 +263,140 @@
     padding: 24px;
 }
 
-.demoImage {
-    width: 100%;
-    border-radius: 8px;
-    border: 1px solid var(--border-color);
+/* Section Variations - extending base classes */
+.featureSection {
+    composes: baseSection;
+}
+
+.contributionSection {
+    composes: baseSection;
+    background: linear-gradient(135deg, var(--background) 0%, var(--card-bg) 100%);
 }
 
 .testimonialSection {
-    background-color: var(--card-bg);
-    padding: 64px 0;
-    margin: 80px 0;
+    composes: baseSection;
+    background: linear-gradient(135deg, var(--background) 0%, var(--card-bg) 100%);
 }
 
+.testimonialSection::before {
+    background: radial-gradient(circle at 30% 80%, rgba(255, 87, 0, 0.05) 0%, transparent 50%),
+    radial-gradient(circle at 70% 10%, rgba(9, 105, 218, 0.05) 0%, transparent 50%);
+}
+
+/* Header Variations */
+.contributionHeader,
+.testimonialHeader {
+    composes: baseHeader;
+}
+
+.contributionTitle,
+.testimonialTitle {
+    composes: baseTitle;
+}
+
+.contributionSubtitle,
+.testimonialSubtitle {
+    composes: baseSubtitle;
+}
+
+/* Grid Variations */
+.contributionGrid,
 .testimonialGrid {
-    display: grid;
+    composes: baseGrid;
+}
+
+.featuresGrid {
+    composes: baseGrid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    grid-gap: 32px;
 }
 
-.testimonialCard {
+/* Card Variations */
+.contributionCard {
+    composes: baseCard;
+}
+
+.contributionIcon {
+    composes: baseIcon;
+}
+
+.contributionCardTitle {
+    composes: baseCardTitle;
+}
+
+.contributionCardDescription {
+    composes: baseCardDescription;
+}
+
+.contributionCardAction {
+    composes: baseCardAction;
+}
+
+/* Feature Cards (simpler version) */
+.featureCard {
     padding: 24px;
-    border-radius: 8px;
-    box-shadow: var(--shadow);
-    border: 1px solid var(--border-color);
-    background-color: var(--background);
+    text-align: left;
+    transition: transform 0.2s ease;
 }
 
-.testimonialContent {
-    position: relative;
-    padding-left: 32px;
+.featureCard:hover {
+    transform: translateY(-4px);
+}
+
+.featureIcon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    background-color: var(--primary-color);
+    color: var(--button-primary-text);
+    border-radius: 12px;
     margin-bottom: 16px;
 }
 
-.testimonialContent::before {
-    content: '"';
-    position: absolute;
-    left: 0;
-    top: -12px;
-    font-size: 48px;
-    color: var(--primary-color);
+.featureTitle {
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 12px;
+}
+
+.featureDescription {
+    color: var(--text-secondary);
+    line-height: 1.6;
+}
+
+/* Testimonial Cards */
+.testimonialCardModern {
+    composes: baseCard;
+}
+
+.testimonialQuote {
+    font-size: 64px;
     font-family: serif;
+    color: var(--primary-color);
+    line-height: 1;
+    margin-bottom: 16px;
+    opacity: 0.3;
+}
+
+.testimonialContentModern {
+    font-size: 16px;
+    line-height: 1.6;
+    color: var(--text-primary);
+    margin-bottom: 24px;
+    font-style: italic;
+}
+
+.testimonialAuthorSection {
+    border-top: 1px solid var(--border-color);
+    padding-top: 16px;
 }
 
 .testimonialAuthor {
-    font-weight: 600;
+    font-weight: 700;
+    font-size: 16px;
+    color: var(--text-primary);
+    margin-bottom: 4px;
 }
 
 .testimonialRole {
@@ -203,13 +404,88 @@
     font-size: 14px;
 }
 
+/* Call to Action Section */
 .callToActionSection {
-    padding: 64px 0;
-    text-align: center;
-    background: linear-gradient(180deg, var(--background) 0%, var(--card-bg) 100%);
+    composes: baseSection;
+    background: linear-gradient(135deg, var(--background) 0%, var(--card-bg) 100%);
     margin-bottom: 80px;
 }
 
+.callToActionContent {
+    max-width: 700px;
+    margin: 0 auto;
+    text-align: center;
+    position: relative;
+    z-index: 1;
+}
+
+.callToActionTitle {
+    composes: baseTitle;
+}
+
+.callToActionDescription {
+    composes: baseSubtitle;
+    margin-bottom: 40px;
+}
+
+.emailSignupForm {
+    margin-top: 32px;
+}
+
+.emailInputWrapper {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 16px;
+    flex-wrap: wrap;
+}
+
+.emailInput {
+    flex: 1;
+    max-width: 320px;
+    padding: 16px 20px;
+    border: 2px solid var(--border-color);
+    border-radius: 12px;
+    font-size: 16px;
+    background-color: var(--card-bg);
+    color: var(--text-primary);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: var(--shadow);
+}
+
+.emailInput:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(255, 87, 0, 0.1);
+    transform: translateY(-2px);
+}
+
+.emailInput::placeholder {
+    color: var(--text-secondary);
+}
+
+.signupButton {
+    padding: 16px 32px;
+    font-size: 16px;
+    font-weight: 600;
+    border-radius: 12px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    white-space: nowrap;
+}
+
+.signupButton:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(255, 87, 0, 0.3);
+}
+
+.privacyText {
+    font-size: 14px;
+    color: var(--text-secondary);
+    margin-top: 12px;
+}
+
+/* Footer Styles */
 .footer {
     background-color: var(--card-bg);
     border-top: 1px solid var(--border-color);
@@ -288,30 +564,23 @@
     gap: 16px;
 }
 
-@media (max-width: 768px) {
-    .footerBottom {
-        flex-direction: column;
-        gap: 16px;
-        text-align: center;
-    }
+/* Specific hover effects for contribution cards */
+.contributionCard:nth-child(1):hover .contributionIcon {
+    background: linear-gradient(135deg, #1da1f2, #0084b4);
+    color: white;
 }
 
-.callToActionContent {
-    max-width: 600px;
-    margin: 0 auto;
+.contributionCard:nth-child(2):hover .contributionIcon {
+    background: linear-gradient(135deg, #ff6b6b, #ee5a5a);
+    color: white;
 }
 
-.callToActionTitle {
-    font-size: 36px;
-    font-weight: 700;
-    margin-bottom: 16px;
+.contributionCard:nth-child(3):hover .contributionIcon {
+    background: linear-gradient(135deg, #4ecdc4, #44a08d);
+    color: white;
 }
 
-.callToActionDescription {
-    color: var(--text-secondary);
-    margin-bottom: 32px;
-}
-
+/* Responsive Design */
 @media (max-width: 768px) {
     .hero {
         padding: 60px 0;
@@ -330,11 +599,91 @@
         align-items: center;
     }
 
+    .baseSection {
+        padding: 60px 0;
+    }
+
+    .baseTitle {
+        font-size: 32px;
+    }
+
+    .baseSubtitle {
+        font-size: 16px;
+    }
+
+    .baseGrid {
+        grid-template-columns: 1fr;
+        gap: 24px;
+    }
+
+    .baseCard {
+        padding: 24px;
+    }
+
+    .baseIcon {
+        width: 64px;
+        height: 64px;
+        margin-bottom: 20px;
+    }
+
+    .baseCardTitle {
+        font-size: 20px;
+    }
+
+    .baseCardDescription {
+        font-size: 14px;
+    }
+
     .featuresGrid {
         grid-template-columns: 1fr;
     }
 
-    .testimonialGrid {
-        grid-template-columns: 1fr;
+    .emailInputWrapper {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 12px;
+    }
+
+    .emailInput {
+        max-width: none;
+    }
+
+    .signupButton {
+        width: 100%;
+    }
+
+    .footerBottom {
+        flex-direction: column;
+        gap: 16px;
+        text-align: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .baseCard {
+        padding: 20px;
+    }
+
+    .baseIcon {
+        width: 56px;
+        height: 56px;
+    }
+
+    .baseCardTitle {
+        font-size: 18px;
+    }
+
+    .callToActionTitle {
+        font-size: 28px;
+    }
+
+    .emailInput {
+        padding: 14px 16px;
+        font-size: 14px;
+    }
+
+    .signupButton {
+        padding: 14px 24px;
+        font-size: 14px;
     }
 }

@@ -1,13 +1,15 @@
 import { useState } from 'react';
 import styles from './DonationCard.module.css';
-import { useWebSocket } from "../../hooks/WebSocketContext.jsx";
+import axiosInstance from "../../utils/axiosInstance.jsx";
+import LoadingSpinner from "../../components/LoadingSpinner/LoadingSpinner.jsx";
 
 export function DonationCard() {
-    const { sendDonation, message } = useWebSocket();
     const [donorName, setDonorName] = useState('');
     const [amount, setAmount] = useState('');
     const [phoneNumber, setPhoneNumber] = useState('');
     const [errors, setErrors] = useState({});
+    const [message, setMessage] = useState('');
+    const [isLoading, setIsLoading] = useState(false);
 
     const validateForm = () => {
         const newErrors = {};
@@ -28,22 +30,44 @@ export function DonationCard() {
         return Object.keys(newErrors).length === 0;
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
 
         if (validateForm()) {
-            // Use the sendMoney function with the form data
-            sendDonation({
+            setIsLoading(true);
+            setMessage('');
+
+            const donationRequest = {
                 amount: Number(amount),
                 phoneNumber: phoneNumber,
-                senderName: donorName || 'Anonymous'
-            });
+                senderName: donorName || 'Anonymous',
+                externalReference: `INV-${new Date().toISOString().replace(/[-:.T]/g, '').slice(0, 17)}`,
+            };
 
-            // Reset form after submission
-            setDonorName('');
-            setAmount('');
-            setPhoneNumber('');
-            setErrors({});
+            try {
+                const response = await axiosInstance.post('/donation/initiate',
+                    donationRequest,
+                    {
+                        headers: {
+                            'Content-Type': 'application/json',
+                        }
+                    }
+                );
+
+                console.log('response: ', response);
+                setMessage('Donation submitted successfully!');
+
+                // Reset form after successful submission
+                setDonorName('');
+                setAmount('');
+                setPhoneNumber('');
+                setErrors({});
+            } catch(err) {
+                console.log(err);
+                setMessage('Error submitting donation. Please try again.');
+            } finally {
+                setIsLoading(false);
+            }
         }
     };
 
@@ -59,6 +83,7 @@ export function DonationCard() {
                         value={donorName}
                         onChange={(e) => setDonorName(e.target.value)}
                         placeholder="Anonymous"
+                        disabled={isLoading}
                     />
                 </div>
 
@@ -73,6 +98,7 @@ export function DonationCard() {
                         min="1"
                         step="0.01"
                         required
+                        disabled={isLoading}
                     />
                     {errors.amount && <span className={styles.error}>{errors.amount}</span>}
                 </div>
@@ -88,19 +114,31 @@ export function DonationCard() {
                         pattern="^0\d{9}$"
                         maxLength="10"
                         required
+                        disabled={isLoading}
                     />
                     <small className={styles.helpText}>Must start with 0 and be exactly 10 digits</small>
                     {errors.phoneNumber && <span className={styles.error}>{errors.phoneNumber}</span>}
                 </div>
 
                 {message && (
-                    <div className={styles.message}>
+                    <div className={`${styles.message} ${message.includes('Error') ? styles.errorMessage : styles.successMessage}`}>
                         {message}
                     </div>
                 )}
 
-                <button type="submit" className="btn-primary">
-                    Donate Now
+                <button
+                    type="submit"
+                    className={`btn-primary ${styles.submitButton}`}
+                    disabled={isLoading}
+                >
+                    {isLoading ? (
+                        <>
+                            <LoadingSpinner />
+                            <span className={styles.buttonText}>Processing...</span>
+                        </>
+                    ) : (
+                        'Donate Now'
+                    )}
                 </button>
             </form>
         </div>

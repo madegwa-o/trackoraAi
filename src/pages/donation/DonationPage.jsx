@@ -1,9 +1,13 @@
 import styles from './DonationPage.module.css';
-import { useWebSocket } from "../../hooks/WebSocketContext.jsx";
 import { DonationCard } from './DonationCard.jsx';
+import {useEffect, useState} from "react";
 
 export function DonationPage() {
-    const { donorList } = useWebSocket();
+    const [donorList, setDonorList] = useState([]);
+
+    useEffect(() => {
+
+    },[])
 
     // Sort donors by amount (highest first)
     const sortedDonors = [...donorList].sort((a, b) => b.amount - a.amount);

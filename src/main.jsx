@@ -10,7 +10,7 @@ import ThemeContextProvider from "./hooks/themeProvider.jsx";
 import TextToSpeech from "./pages/textToSpeech/TextToSpeech.jsx";
 import Conversation from "./pages/conversation/Conversation.jsx";
 import {WebSocketProvider} from "./hooks/WebSocketContext.jsx";
-import {DonationPage} from "./components/donation/DonationPage.jsx";
+import {DonationPage} from "./pages/donation/DonationPage.jsx";
 import Documentation from "./pages/Documentation.jsx";
 import Unauthorised from "./pages/unauthorised/Unauthorised.jsx";
 
