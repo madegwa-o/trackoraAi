@@ -29,7 +29,7 @@ export const WebSocketProvider = ({ children }) => {
         ws.onmessage = (event) => {
             try {
                 const message = JSON.parse(event.data); // Attempt to parse JSON
-                console.log("Parsed JSON message: ", message);
+                console.log("Parsed JSON : ", message);
                 setNotification(message.message || "NEW MESSAGE");
             } catch (error) {
                 console.log('Error parsing JSON message', error);
