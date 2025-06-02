@@ -1,6 +1,7 @@
 import { Headphones, MessageSquare, BookOpen, UserPlus, Globe, Accessibility, Github, Twitter, Linkedin, Share2, Heart, Code } from 'lucide-react';
 import styles from './HomePage.module.css';
 import {Link} from 'react-router-dom';
+import DemoSection from "./demo/DemoSection.jsx";
 
 export default function HomePage() {
     return (
@@ -86,27 +87,7 @@ export default function HomePage() {
 
             {/* Demo Section */}
             <section className="container" id="text-to-speech">
-                <div className={styles.demoSection}>
-                    <div className={styles.demoTabs}>
-                        <div className={`${styles.demoTab} ${styles.demoTabActive}`}>Text-to-Speech</div>
-                        <div className={styles.demoTab} id="conversation">Conversational AI</div>
-                    </div>
-                    <div className={styles.demoContent}>
-                        <div className="card">
-                            <h3>Transform Text into Natural Speech</h3>
-                            <p>Experience our powerful text-to-speech technology that converts written content into high-quality, natural-sounding audio.</p>
-                            <div style={{ margin: '24px 0', padding: '20px', backgroundColor: 'var(--button-secondary-bg)', borderRadius: '8px' }}>
-                                <p>Try it out by entering your text below:</p>
-                                <textarea
-                                    placeholder="Enter text to convert to speech..."
-                                    rows="4"
-                                    style={{ width: '100%', marginTop: '12px', marginBottom: '12px' }}
-                                ></textarea>
-                                <button className="btn-primary">Convert to Speech</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+               <DemoSection />
             </section>
 
             {/* Why us Section */}

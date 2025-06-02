@@ -11,7 +11,7 @@ import TextToSpeech from "./pages/textToSpeech/TextToSpeech.jsx";
 import Conversation from "./pages/conversation/Conversation.jsx";
 import {WebSocketProvider} from "./hooks/WebSocketContext.jsx";
 import {DonationPage} from "./pages/donation/DonationPage.jsx";
-import Documentation from "./pages/Documentation.jsx";
+import Documentation from "./pages/documentation/Documentation.jsx";
 import Unauthorised from "./pages/unauthorised/Unauthorised.jsx";
 
 
@@ -54,11 +54,11 @@ const router = createBrowserRouter([
 ])
 
 createRoot(document.getElementById('root')).render(
-    // <StrictMode>
+    <StrictMode>
       <ThemeContextProvider>
           <WebSocketProvider>
               <RouterProvider router={router}/>
           </WebSocketProvider>
       </ThemeContextProvider>,
-    {/*</StrictMode>,*/}
+    </StrictMode>,
 )

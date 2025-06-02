@@ -1,3 +1,4 @@
+/* ===== HEADER STYLES ===== */
 .header {
     background-color: var(--header-bg);
     border-bottom: 1px solid var(--border-color);
@@ -5,7 +6,7 @@
     padding: 12px 0;
     position: sticky;
     top: 0;
-    z-index: 100;
+    z-index: 1000;
 }
 
 .headerContainer {
@@ -14,16 +15,37 @@
     align-items: center;
 }
 
+/* ===== LOGO STYLES ===== */
 .logo {
     display: flex;
     align-items: center;
     gap: 12px;
+    z-index: 1001;
+}
+
+.logoLink {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+    color: inherit;
+}
+
+.logoLink:hover {
+    text-decoration: none;
 }
 
 .logoImg {
     width: 32px;
     height: 32px;
     border-radius: 50%;
+    background-color: var(--primary-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: bold;
+    font-size: 16px;
 }
 
 .logoText {
@@ -32,17 +54,22 @@
     color: var(--text-primary);
 }
 
+/* ===== DESKTOP NAVIGATION ===== */
 .nav {
     display: flex;
-    gap: 24px;
+    gap: 32px;
+    align-items: center;
 }
 
 .navLink {
     color: var(--text-secondary);
     font-weight: 500;
     font-size: 14px;
-    padding: 8px 0;
+    padding: 10px 0;
     position: relative;
+    transition: color 0.2s ease;
+    text-decoration: none;
+    white-space: nowrap;
 }
 
 .navLink:hover {
@@ -50,8 +77,10 @@
     text-decoration: none;
 }
 
+
 .navLinkActive {
-    color: var(--text-primary);
+    color: var(--primary-color);
+    font-weight: 600;
 }
 
 .navLinkActive::after {
@@ -65,10 +94,12 @@
     border-radius: 2px;
 }
 
+/* ===== ACTIONS STYLES ===== */
 .actions {
     display: flex;
     align-items: center;
-    gap: 16px;
+    gap: 12px;
+    z-index: 1001;
 }
 
 .iconButton {
@@ -80,6 +111,8 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    transition: all 0.2s ease;
+    cursor: pointer;
 }
 
 .iconButton:hover {
@@ -87,12 +120,232 @@
     color: var(--text-primary);
 }
 
+.signInButton {
+    font-size: 14px;
+    padding: 8px 16px;
+}
+
+.mobileMenuButton {
+    display: none;
+}
+
+/* ===== MOBILE MENU STYLES ===== */
+.mobileMenuOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1998;
+    backdrop-filter: blur(2px);
+}
+
+.mobileNav {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 280px;
+    height: 100vh;
+    background-color: var(--card-bg);
+    border-left: 1px solid var(--border-color);
+    z-index: 1999;
+    transition: right 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    overflow-y: auto;
+    box-shadow: -4px 0 20px rgba(0, 0, 0, 0.15);
+}
+
+.mobileNavOpen {
+    right: 0;
+}
+
+.mobileNavContent {
+    padding: 80px 24px 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.mobileNavLink {
+    color: var(--text-secondary);
+    font-weight: 500;
+    font-size: 16px;
+    padding: 16px 0;
+    border-bottom: 1px solid var(--border-color);
+    text-decoration: none;
+    transition: color 0.2s ease;
+    position: relative;
+}
+
+.mobileNavLink:hover {
+    color: var(--text-primary);
+    text-decoration: none;
+}
+
+.mobileNavLink:last-of-type {
+    border-bottom: none;
+}
+
+.mobileNavLinkActive {
+    color: var(--primary-color);
+    font-weight: 600;
+}
+
+.mobileNavLinkActive::before {
+    content: '';
+    position: absolute;
+    left: -24px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 3px;
+    height: 24px;
+    background-color: var(--primary-color);
+    border-radius: 2px;
+}
+
+.mobileActions {
+    margin-top: 32px;
+    padding-top: 24px;
+    border-top: 1px solid var(--border-color);
+}
+
+.mobileActions button {
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
+}
+
+/* ===== RESPONSIVE DESIGN ===== */
 @media (max-width: 768px) {
     .nav {
         display: none;
     }
 
-    .headerContainer {
-        flex-wrap: wrap;
+    .mobileMenuButton {
+        display: flex;
     }
+
+    .signInButton {
+        display: none;
+    }
+
+    .actions {
+        gap: 8px;
+    }
+
+    .logoText {
+        font-size: 18px;
+    }
+}
+
+@media (max-width: 480px) {
+    .headerContainer {
+        padding: 0 16px;
+    }
+
+    /* Fixed mobile menu for small screens */
+    .mobileNav {
+        width: 100vw;
+        max-width: 320px;
+        right: -100vw;
+        border-left: none;
+        border-radius: 0;
+    }
+
+    .mobileNavOpen {
+        right: 0;
+    }
+
+    .mobileNavContent {
+        padding: 80px 20px 24px;
+    }
+
+    .logoText {
+        display: none;
+    }
+
+    .logoImg {
+        width: 28px;
+        height: 28px;
+        font-size: 14px;
+    }
+
+    /* Improve touch targets on mobile */
+    .iconButton {
+        padding: 10px;
+        min-width: 44px;
+        min-height: 44px;
+    }
+
+    .mobileNavLink {
+        padding: 20px 0;
+        font-size: 18px;
+    }
+}
+
+/* Extra small screens */
+@media (max-width: 320px) {
+    .mobileNav {
+        width: 100vw;
+        max-width: none;
+    }
+
+    .headerContainer {
+        padding: 0 12px;
+    }
+
+    .actions {
+        gap: 4px;
+    }
+}
+
+/* ===== ACCESSIBILITY ===== */
+.iconButton:focus {
+    outline: 2px solid var(--primary-color);
+    outline-offset: 2px;
+}
+
+.navLink:focus,
+.mobileNavLink:focus {
+    outline: 2px solid var(--primary-color);
+    outline-offset: 2px;
+    border-radius: 4px;
+}
+
+/* Reduce motion for users who prefer it */
+@media (prefers-reduced-motion: reduce) {
+    .mobileNav {
+        transition: none;
+    }
+
+    .navLink,
+    .mobileNavLink,
+    .iconButton {
+        transition: none;
+    }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+    .mobileMenuOverlay {
+        background-color: rgba(0, 0, 0, 0.8);
+    }
+
+    .mobileNav {
+        border: 2px solid var(--border-color);
+    }
+}
+
+/* ===== ANIMATIONS ===== */
+@keyframes slideInRight {
+    from {
+        transform: translateX(100%);
+    }
+    to {
+        transform: translateX(0);
+    }
+}
+
+.mobileNavOpen {
+    animation: slideInRight 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
