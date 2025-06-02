@@ -4,7 +4,7 @@ import { Mic, Volume2, MessageSquare, Settings, Play, Pause } from 'lucide-react
 import styles from './DemoSection.module.css';
 
 export default function DemoSection() {
-    const [activeTab, setActiveTab] = useState('text-to-speech');
+    const [activeTab, setActiveTab] = useState('speech-to-text');
 
     const tabs = [
         {

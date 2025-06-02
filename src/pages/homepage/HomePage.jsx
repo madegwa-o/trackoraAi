@@ -2,6 +2,7 @@ import { Headphones, MessageSquare, BookOpen, UserPlus, Globe, Accessibility, Gi
 import styles from './HomePage.module.css';
 import {Link} from 'react-router-dom';
 import DemoSection from "./demo/DemoSection.jsx";
+import NewsletterSubscription from "./NewsletterSubscription/NewsletterSubscription.jsx";
 
 export default function HomePage() {
     return (
@@ -243,27 +244,7 @@ export default function HomePage() {
             {/* Call to Action Section */}
             <section className={styles.callToActionSection} id="newsletter">
                 <div className="container">
-                    <div className={styles.callToActionContent}>
-                        <h2 className={styles.callToActionTitle}>Stay Updated on Accessibility Innovation</h2>
-                        <p className={styles.callToActionDescription}>
-                            Join our community and be the first to know about new features, accessibility insights, and educational resources that are transforming how students learn.
-                        </p>
-                        <div className={styles.emailSignupForm}>
-                            <div className={styles.emailInputWrapper}>
-                                <input
-                                    type="email"
-                                    placeholder="Enter your email address"
-                                    className={styles.emailInput}
-                                />
-                                <button className={`btn-primary ${styles.signupButton}`}>
-                                    Join Our Community
-                                </button>
-                            </div>
-                            <p className={styles.privacyText}>
-                                We respect your privacy. Unsubscribe at any time.
-                            </p>
-                        </div>
-                    </div>
+                   <NewsletterSubscription />
                 </div>
             </section>
 

@@ -222,47 +222,6 @@
     gap: 8px;
 }
 
-/*!* Demo Section *!*/
-/*.demoSection {*/
-/*    background-color: var(--card-bg);*/
-/*    border-radius: 12px;*/
-/*    overflow: hidden;*/
-/*    margin: 64px 0;*/
-/*    box-shadow: var(--shadow);*/
-/*    border: 1px solid var(--border-color);*/
-/*}*/
-
-/*.demoTabs {*/
-/*    display: flex;*/
-/*    border-bottom: 1px solid var(--border-color);*/
-/*}*/
-
-/*.demoTab {*/
-/*    padding: 16px 24px;*/
-/*    font-weight: 600;*/
-/*    color: var(--text-secondary);*/
-/*    cursor: pointer;*/
-/*    position: relative;*/
-/*}*/
-
-/*.demoTabActive {*/
-/*    color: var(--primary-color);*/
-/*}*/
-
-/*.demoTabActive::after {*/
-/*    content: '';*/
-/*    position: absolute;*/
-/*    bottom: 0;*/
-/*    left: 0;*/
-/*    right: 0;*/
-/*    height: 2px;*/
-/*    background-color: var(--primary-color);*/
-/*}*/
-
-/*.demoContent {*/
-/*    padding: 24px;*/
-/*}*/
-
 /* Section Variations - extending base classes */
 .featureSection {
     composes: baseSection;
